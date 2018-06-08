@@ -12,7 +12,7 @@ local str_sub    = string.sub
 local lrucache = nil
 
 local _M = {
-    _VERSION = '0.02',
+    _VERSION = '0.2.1',
 }
 
 local mt = { __index = _M }
@@ -44,7 +44,7 @@ end
 
 local function enable_lrucache(size)
     local size = size or 4000  -- Cache the last 4000 IPs (~1MB memory) by default
-    local lrucache_obj, err = require("resty.lrucache").new(4000)
+    local lrucache_obj, err = require("resty.lrucache").new(size)
     if not lrucache_obj then
         return nil, "failed to create the cache: " .. (err or "unknown")
     end
